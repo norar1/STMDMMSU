@@ -1,12 +1,17 @@
 import mongoose from "mongoose";
 
-const AdminSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  verified: { type: Boolean, default: false },
-  verification_code: { type: Number },
-  reset_code: { type: Number },
-  reset_code_expires: { type: Date },
-});
+const adminSchema = new mongoose.Schema(
+  {
+    email: { type: String, required: true, unique: true, trim: true, lowercase: true },
+    password: { type: String, required: true },
+    otp: { type: String, default: null },
+    otpExpires: { type: Date, default: null },
+    resetCode: { type: String, default: null },
+    resetExpires: { type: Date, default: null }, 
+  },
+  { timestamps: true }
+);
 
-export default mongoose.model("Admin", AdminSchema);
+const Admin = mongoose.model("Admin", adminSchema);
+
+export default Admin;

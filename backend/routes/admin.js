@@ -1,12 +1,15 @@
 import express from "express";
-import {CreateAdmin,forgotPassword,resendVerificationCode,resetPassword,Login} from "../controller/Admin.js"
+import { createAdmin, loginAdmin, verifyOtp, resendOtp, forgotPassword, resetPassword, changePassword} from "../controller/Admin.js";
 
 const router = express.Router();
 
-router.post ("/CreateAdmin", CreateAdmin);
-router.post ("/forgotPassword",forgotPassword)
-router.post ("/resendVerificationCode",resendVerificationCode)
-router.post ("/resetPassword",resetPassword)
-router.post ("/login",Login)
+router.post("/create-admin", createAdmin);
+router.post("/login", loginAdmin);
+router.post("/verify-otp", verifyOtp);
+router.post("/resend-otp", resendOtp);
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password", resetPassword);
+router.post ("/change-password", changePassword)
+
 
 export default router;
