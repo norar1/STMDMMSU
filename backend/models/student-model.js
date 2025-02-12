@@ -39,6 +39,11 @@ const studentSchema = new mongoose.Schema({
       },
       message: 'GWA must be between 1.0 and 5.0'
     }
+  },
+  LO7: {
+    type: String,
+    enum: ['Yes', 'No'],
+    required: true
   }
 });
 

@@ -10,7 +10,7 @@ const generateStudents = (count) => {
   const firstNames = ["Carlos", "Angela", "Diego", "Sofia", "Miguel", "Elena", "Rafael", "Camila", "Luis", "Isabella", "Javier", "Mariana", "Fernando", "Valeria", "Andres", "Paula", "Roberto", "Beatriz", "Daniel", "Luisa", "Eduardo", "Clara", "Joaquin"];
   const lastNames = ["Fernandez", "Torres", "Lopez", "Gomez", "Santiago", "Ramos", "Mendoza", "Del Rosario", "Castillo", "Reyes", "Cruz", "Ortega", "Silva", "Navarro", "Domingo", "Herrera", "Jimenez", "Padilla", "Aguilar", "Vega", "Salazar", "Fuentes", "Rojas"];
   const middleInitials = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  
+
   const students = [];
   for (let i = 1; i <= count; i++) {
     const student_id = 2025000 + i;
@@ -19,11 +19,12 @@ const generateStudents = (count) => {
     const last_name = lastNames[Math.floor(Math.random() * lastNames.length)];
     const year = years[Math.floor(Math.random() * years.length)];
     const program = programs[Math.floor(Math.random() * programs.length)];
-    const GWA = (Math.random() * (5.0 - 1.0) + 1.0).toFixed(2); // 1.0 to 5.0 range
-    
-    students.push({ student_id, first_name, middle_initial, last_name, year, GWA, program });
+    const GWA = (Math.random() * (5.0 - 1.0) + 1.0).toFixed(2); 
+    const LO7 = Math.random() < 0.3 ? "Yes" : "No"; 
+
+    students.push({ student_id, first_name, middle_initial, last_name, year, GWA, program, LO7 });
   }
-  
+
   return students;
 };
 
@@ -33,7 +34,7 @@ const seedDatabase = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    
+
     console.log("Connected to MongoDB");
 
     await Student.deleteMany(); 

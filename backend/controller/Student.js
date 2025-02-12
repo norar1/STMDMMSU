@@ -2,7 +2,7 @@ import Student from '../models/student-model.js';
 
 export const CreateStudent = async (req, res) => {
   try {
-    const { first_name, middle_initial, last_name, year, GWA, student_id, program } = req.body;
+    const { first_name, middle_initial, last_name, year, GWA, student_id, program, LO7 } = req.body;
 
     const existingStudent = await Student.findOne({
       first_name,
@@ -24,6 +24,7 @@ export const CreateStudent = async (req, res) => {
       GWA,
       student_id,
       program,
+      LO7, 
     });
 
     await newStudent.save();
@@ -34,10 +35,11 @@ export const CreateStudent = async (req, res) => {
   }
 };
 
+
 export const UpdateStudent = async (req, res) => {
   try {
     const { id } = req.params;
-    const { first_name, middle_initial, last_name, year, GWA, program } = req.body;
+    const { first_name, middle_initial, last_name, year, GWA, program, LO7 } = req.body;
 
     const student = await Student.findById(id);
 
@@ -51,6 +53,7 @@ export const UpdateStudent = async (req, res) => {
     student.year = year;
     student.GWA = GWA;
     student.program = program;
+    student.LO7 = LO7; 
 
     await student.save();
 
@@ -59,6 +62,7 @@ export const UpdateStudent = async (req, res) => {
     res.status(500).json({ message: "Error processing request", error: error.message });
   }
 };
+
 
 export const DeleteStudent = async (req, res) => {
   try {
